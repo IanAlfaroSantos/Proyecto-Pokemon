@@ -1,17 +1,22 @@
-export const ContenedorPokemons = ({pokemons}) => {
+export const ContenedorPokemons = ({pokemon}) => {
 
     return(
-        <>
-            <div className="d-flex flex-row justify-content-center alig-items-center mt-3">
-                <h4 type="text" className="bg-warning text-center ms-1 mt-4"></h4>
-            </div>
-            <div className="d-flex flex-row justify-content-center alig-items-center mt-3">
-                {pokemons.map(({url})=>{
-                    return (
-                        <img className="rounded-pill mt-3 my-3 me-3 img-fluid maxWidth-100% height-auto" src={url} alt="image"/>
-                    )
-                })}
-            </div>
-        </>
+        <div className="card position-absolute top-50 start-50 translate-middle" style={{width: '18rem'}}>
+            {pokemon && (
+                <>
+                    <img className="card-img-top" src={pokemon.sprites.other.home.front_default} alt={pokemon.name}/>
+                    <div className="card-body">
+                        <h5 className="card-title">{pokemon.name}</h5>
+                    </div>
+                    <ul className="list-group list-group-flush">
+                        <li className="list-group-item">Id: {pokemon.id}</li>
+                        <li className="list-group-item">Tipo: {pokemon.types.map(typeInfo => typeInfo.type.name).join(', ')}</li>
+                        <li className="list-group-item">Altura: {pokemon.height / 10} m</li>
+                        <li className="list-group-item">Peso: {pokemon.weight / 10} kg</li>
+                        <li className="list-group-item">Habilidad: {pokemon.abilities.map(abilityInfo => abilityInfo.ability.name).join(', ')}</li>
+                    </ul>
+                </>
+            )}
+        </div>
     )
 }

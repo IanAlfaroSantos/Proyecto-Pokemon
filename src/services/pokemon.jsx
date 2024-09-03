@@ -1,14 +1,9 @@
-const api_key = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png'
-
-export const reqPokemon = async() => {
+export const reqPokemon = async(namePokemon) => {
     try {
-        const resp = await fetch({api_key})
-        const { data } = await resp.json()
-        const pokemons = data.map((pokemon)=> ({
-            url: pokemon.images.fixed_width.url
-        }))
+        const resp = await fetch(`https://pokeapi.co/api/v2/pokemon/${namePokemon}`)
+        const data = await resp.json()
 
-        return pokemons
+        return data
     } catch (err) {
         console.error(err)
     }
